@@ -31,36 +31,36 @@ export default function Runs() {
   };
 
   return (
-    <div style={{ padding: '32px', color: 'white', height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ padding: '32px', color: 'var(--text-primary)', height: '100%', display: 'flex', flexDirection: 'column' }}>
       
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ position: 'relative' }}>
-            <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '10px' }} />
+            <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '10px' }} />
             <input 
               type="text" 
               placeholder="Search runs..." 
               style={{
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                backgroundColor: 'var(--bg-overlay)',
+                border: '1px solid var(--border)',
                 borderRadius: '8px',
                 padding: '8px 12px 8px 36px',
-                color: 'white',
+                color: 'var(--text-primary)',
                 width: '300px',
                 outline: 'none',
                 fontSize: '0.875rem'
               }}
             />
           </div>
-          <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#e2e8f0', cursor: 'pointer' }}>
+          <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: 'var(--bg-overlay)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text-primary)', cursor: 'pointer' }}>
             <Filter size={16} /> Filters
           </button>
         </div>
 
         {selected.size > 0 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '0.875rem', color: '#94a3b8' }}>{selected.size} selected</span>
-            <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#e2e8f0', cursor: 'pointer' }}>
+            <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>{selected.size} selected</span>
+            <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: 'var(--bg-overlay)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text-primary)', cursor: 'pointer' }}>
               <Download size={16} /> Export
             </button>
             <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: 'rgba(244, 63, 94, 0.1)', border: '1px solid rgba(244, 63, 94, 0.2)', borderRadius: '8px', color: '#f43f5e', cursor: 'pointer' }}>
