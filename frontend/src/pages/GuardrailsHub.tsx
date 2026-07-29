@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Shield, Wrench, ShieldAlert, CheckCircle2, Play, AlertTriangle } from 'lucide-react';
+import { Shield, Wrench, ShieldAlert, Play } from 'lucide-react';
 
 const API_BASE = 'http://localhost:8000/api';
 
@@ -53,28 +53,37 @@ const GuardrailsHub: React.FC = () => {
     }
   };
 
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '10px',
+    borderRadius: '6px',
+    border: '1px solid var(--border)',
+    backgroundColor: 'var(--bg-overlay)',
+    color: 'var(--text-primary)'
+  };
+
   return (
-    <div style={{ padding: '32px', color: 'white', maxWidth: '1400px', margin: '0 auto' }}>
+    <div style={{ padding: '32px', color: 'var(--text-primary)', maxWidth: '1400px', margin: '0 auto' }}>
       <div style={{ marginBottom: '32px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-          <div style={{ background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 100%)', borderRadius: '8px', padding: '8px', display: 'flex' }}>
+          <div style={{ background: 'var(--brand)', borderRadius: '8px', padding: '8px', display: 'flex' }}>
             <Shield size={24} color="white" />
           </div>
-          <h1 style={{ margin: 0, fontSize: '1.875rem', fontWeight: 700 }}>Security Firewall & Auto-Healing Hub</h1>
+          <h1 style={{ margin: 0, fontSize: '1.875rem', fontWeight: 700, color: 'var(--text-primary)' }}>Security Firewall & Auto-Healing Hub</h1>
         </div>
-        <p style={{ margin: 0, color: '#94a3b8', fontSize: '1rem' }}>
+        <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '1rem' }}>
           Inline PII redaction, prompt injection defense, and automated error-repair engine powered by Gemini.
         </p>
       </div>
 
-      <div style={{ display: 'flex', gap: '12px', marginBottom: '32px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '16px' }}>
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '32px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
         <button
           onClick={() => { setActiveTab('guardrails'); setResult(null); }}
           style={{
             display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 16px', borderRadius: '8px',
             border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: '0.9rem',
-            backgroundColor: activeTab === 'guardrails' ? 'var(--brand)' : 'rgba(255,255,255,0.05)',
-            color: activeTab === 'guardrails' ? 'white' : '#94a3b8'
+            backgroundColor: activeTab === 'guardrails' ? 'var(--brand)' : 'var(--bg-overlay)',
+            color: activeTab === 'guardrails' ? 'white' : 'var(--text-secondary)'
           }}
         >
           <ShieldAlert size={18} /> Security Firewall & PII Redactor
@@ -84,8 +93,8 @@ const GuardrailsHub: React.FC = () => {
           style={{
             display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 16px', borderRadius: '8px',
             border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: '0.9rem',
-            backgroundColor: activeTab === 'autoheal' ? 'var(--brand)' : 'rgba(255,255,255,0.05)',
-            color: activeTab === 'autoheal' ? 'white' : '#94a3b8'
+            backgroundColor: activeTab === 'autoheal' ? 'var(--brand)' : 'var(--bg-overlay)',
+            color: activeTab === 'autoheal' ? 'white' : 'var(--text-secondary)'
           }}
         >
           <Wrench size={18} /> Auto-Healing Middleware
@@ -93,23 +102,23 @@ const GuardrailsHub: React.FC = () => {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
-        <div style={{ backgroundColor: 'var(--bg-card)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)', padding: '24px' }}>
+        <div style={{ backgroundColor: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border)', padding: '24px' }}>
           {activeTab === 'guardrails' ? (
             <div>
-              <h3 style={{ marginTop: 0, fontSize: '1.2rem' }}>🛡️ Test Security Firewall Scanner</h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Scan prompt for PII (SSNs, Emails, API keys) and malicious prompt injections.</p>
+              <h3 style={{ marginTop: 0, fontSize: '1.2rem', color: 'var(--text-primary)' }}>🛡️ Test Security Firewall Scanner</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Scan prompt for PII (SSNs, Emails, API keys) and malicious prompt injections.</p>
               
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Input Prompt Text</label>
-                <textarea rows={6} value={promptText} onChange={(e) => setPromptText(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'var(--bg-base)', color: 'white', resize: 'vertical' }} />
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>Input Prompt Text</label>
+                <textarea rows={6} value={promptText} onChange={(e) => setPromptText(e.target.value)} style={{ ...inputStyle, resize: 'vertical' }} />
               </div>
 
               <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', color: 'var(--text-primary)' }}>
                   <input type="checkbox" checked={checkPii} onChange={(e) => setCheckPii(e.target.checked)} />
                   <span style={{ fontSize: '0.9rem' }}>Check PII Redaction</span>
                 </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', color: 'var(--text-primary)' }}>
                   <input type="checkbox" checked={checkInjection} onChange={(e) => setCheckInjection(e.target.checked)} />
                   <span style={{ fontSize: '0.9rem' }}>Check Prompt Injection</span>
                 </label>
@@ -121,22 +130,22 @@ const GuardrailsHub: React.FC = () => {
             </div>
           ) : (
             <div>
-              <h3 style={{ marginTop: 0, fontSize: '1.2rem' }}>🔧 Test Auto-Healing Middleware</h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Simulate a broken LLM output / runtime error and let Gemini repair it live.</p>
+              <h3 style={{ marginTop: 0, fontSize: '1.2rem', color: 'var(--text-primary)' }}>🔧 Test Auto-Healing Middleware</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Simulate a broken LLM output / runtime error and let Gemini repair it live.</p>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Original Prompt</label>
-                <input value={healPrompt} onChange={(e) => setHealPrompt(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'var(--bg-base)', color: 'white' }} />
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>Original Prompt</label>
+                <input value={healPrompt} onChange={(e) => setHealPrompt(e.target.value)} style={inputStyle} />
               </div>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Failed LLM Output</label>
-                <input value={failedOutput} onChange={(e) => setFailedOutput(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'var(--bg-base)', color: 'white' }} />
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>Failed LLM Output</label>
+                <input value={failedOutput} onChange={(e) => setFailedOutput(e.target.value)} style={inputStyle} />
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>Exception Stack Trace / Error</label>
-                <input value={errorMessage} onChange={(e) => setErrorMessage(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'var(--bg-base)', color: 'white' }} />
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>Exception Stack Trace / Error</label>
+                <input value={errorMessage} onChange={(e) => setErrorMessage(e.target.value)} style={inputStyle} />
               </div>
 
               <button onClick={runAutoHeal} disabled={loading} style={{ width: '100%', padding: '12px', backgroundColor: 'var(--brand)', border: 'none', borderRadius: '8px', color: 'white', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
@@ -146,19 +155,19 @@ const GuardrailsHub: React.FC = () => {
           )}
         </div>
 
-        <div style={{ backgroundColor: 'var(--bg-card)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)', padding: '24px', display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ marginTop: 0, fontSize: '1.2rem' }}>Scan & Healing Results</h3>
-          <div style={{ flex: 1, backgroundColor: 'var(--bg-base)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', padding: '16px', fontFamily: 'monospace', overflowY: 'auto', maxHeight: '500px' }}>
+        <div style={{ backgroundColor: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border)', padding: '24px', display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ marginTop: 0, fontSize: '1.2rem', color: 'var(--text-primary)' }}>Scan & Healing Results</h3>
+          <div style={{ flex: 1, backgroundColor: 'var(--bg-overlay)', borderRadius: '8px', border: '1px solid var(--border)', padding: '16px', fontFamily: 'monospace', overflowY: 'auto', maxHeight: '500px' }}>
             {loading ? (
-              <div style={{ color: '#94a3b8', textAlign: 'center', marginTop: '40px' }}>
+              <div style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '40px' }}>
                 <div style={{ fontSize: '1.2rem', marginBottom: '8px' }}>⚡ Gemini Processing...</div>
               </div>
             ) : result ? (
-              <pre style={{ margin: 0, whiteSpace: 'pre-wrap', color: result.is_safe === false ? '#ef4444' : '#10b981', fontSize: '0.85rem' }}>
+              <pre style={{ margin: 0, whiteSpace: 'pre-wrap', color: result.is_safe === false ? '#ef4444' : 'var(--brand)', fontSize: '0.85rem' }}>
                 {JSON.stringify(result, null, 2)}
               </pre>
             ) : (
-              <div style={{ color: '#64748b', textAlign: 'center', marginTop: '60px' }}>
+              <div style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '60px' }}>
                 Run a scan or auto-healing test on the left to see results.
               </div>
             )}

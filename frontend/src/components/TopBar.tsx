@@ -39,7 +39,7 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
   return (
     <div style={{ 
       height: '72px', 
-      borderBottom: '1px solid rgba(255,255,255,0.05)', 
+      borderBottom: '1px solid var(--border)', 
       backgroundColor: 'var(--bg-base)',
       display: 'flex',
       alignItems: 'center',
@@ -49,8 +49,8 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
       
       <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
         <div>
-          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 600, color: 'white' }}>{currentTitle.title}</h2>
-          <p style={{ margin: 0, fontSize: '0.875rem', color: '#94a3b8', marginTop: '2px' }}>{currentTitle.subtitle}</p>
+          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>{currentTitle.title}</h2>
+          <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: '2px' }}>{currentTitle.subtitle}</p>
         </div>
 
         <div style={{ 
@@ -58,26 +58,26 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
           alignItems: 'center', 
           gap: '8px', 
           padding: '8px 16px', 
-          backgroundColor: 'rgba(255,255,255,0.03)',
-          border: '1px solid rgba(255,255,255,0.05)',
+          backgroundColor: 'var(--bg-overlay)',
+          border: '1px solid var(--border)',
           borderRadius: '8px',
           cursor: 'pointer'
         }}>
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--brand)' }}></div>
-          <span style={{ color: 'white', fontSize: '0.875rem', fontWeight: 500 }}>Production App</span>
-          <ChevronDown size={14} color="#94a3b8" style={{ marginLeft: '8px' }} />
+          <span style={{ color: 'var(--text-primary)', fontSize: '0.875rem', fontWeight: 500 }}>Production App</span>
+          <ChevronDown size={14} color="var(--text-muted)" style={{ marginLeft: '8px' }} />
         </div>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-        <div style={{ display: 'flex', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '6px', padding: '4px' }}>
+        <div style={{ display: 'flex', backgroundColor: 'var(--bg-overlay)', borderRadius: '6px', padding: '4px', border: '1px solid var(--border)' }}>
           {['1h', '24h', '7d', '30d'].map((range, i) => (
             <button 
               key={range}
               style={{
-                background: i === 1 ? 'rgba(255,255,255,0.1)' : 'transparent',
+                background: i === 1 ? 'var(--brand)' : 'transparent',
                 border: 'none',
-                color: i === 1 ? 'white' : '#94a3b8',
+                color: i === 1 ? 'white' : 'var(--text-secondary)',
                 padding: '4px 12px',
                 borderRadius: '4px',
                 fontSize: '0.875rem',

@@ -67,7 +67,7 @@ const Sidebar = () => {
         <div style={{ background: 'linear-gradient(135deg, var(--brand) 0%, var(--cyan) 100%)', borderRadius: '8px', padding: '6px' }}>
           <Zap size={24} color="white" fill="white" />
         </div>
-        <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, background: 'linear-gradient(135deg, #fff 0%, #aaa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)' }}>
           LangRush
         </h1>
       </div>
@@ -75,7 +75,7 @@ const Sidebar = () => {
       <nav style={{ flex: 1, padding: '0 12px' }}>
         {navSections.map((section, idx) => (
           <div key={idx} style={{ marginBottom: '24px' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b', marginBottom: '8px', paddingLeft: '12px', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '12px', letterSpacing: '0.05em' }}>
               {section.title}
             </div>
             {section.items.map((item) => (
@@ -85,13 +85,13 @@ const Sidebar = () => {
                 className={`nav-item ${isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/') ? 'active' : ''}`}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px',
-                  borderRadius: '6px', color: (isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/')) ? 'white' : '#94a3b8',
+                  borderRadius: '6px', color: (isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/')) ? 'var(--brand)' : 'var(--text-secondary)',
                   textDecoration: 'none', transition: 'all 0.2s',
-                  backgroundColor: (isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/')) ? 'rgba(79, 110, 247, 0.1)' : 'transparent',
-                  fontWeight: 500, fontSize: '0.9rem'
+                  backgroundColor: (isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/')) ? 'var(--brand-subtle)' : 'transparent',
+                  fontWeight: (isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/')) ? 600 : 500, fontSize: '0.9rem'
                 }}
               >
-                <div style={{ color: (isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/')) ? 'var(--brand)' : '#64748b' }}>
+                <div style={{ color: (isActive(item.path) && item.path !== '/' || (item.path === '/' && location.pathname === '/')) ? 'var(--brand)' : 'var(--text-muted)' }}>
                   {item.icon}
                 </div>
                 {item.name}
@@ -101,12 +101,12 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      <div style={{ padding: '16px', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div style={{ padding: '16px', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'var(--brand)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <User size={18} color="white" />
         </div>
         <div>
-          <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'white' }}>Alex Developer</div>
+          <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>Alex Developer</div>
           <div style={{ fontSize: '0.75rem', color: 'var(--brand)', fontWeight: 500 }}>Pro Plan</div>
         </div>
       </div>
