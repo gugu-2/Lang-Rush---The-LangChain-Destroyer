@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import ReactFlow, { 
   Background, Controls, MiniMap,
   useNodesState, useEdgesState,
@@ -15,39 +15,39 @@ const initialNodes = [
 ];
 
 const initialEdges = [
-  { id: 'e1-2', source: '1', target: '2', animated: true, style: { stroke: '#94a3b8' } },
-  { id: 'e2-3', source: '2', target: '3', animated: true, style: { stroke: '#94a3b8' } },
-  { id: 'e3-4', source: '3', target: '4', animated: true, style: { stroke: '#94a3b8' } },
+  { id: 'e1-2', source: '1', target: '2', animated: true, style: { stroke: 'var(--brand)' } },
+  { id: 'e2-3', source: '2', target: '3', animated: true, style: { stroke: 'var(--brand)' } },
+  { id: 'e3-4', source: '3', target: '4', animated: true, style: { stroke: 'var(--brand)' } },
 ];
 
-// Custom Node Components
+// Custom Node Components using CSS Variables for multi-theme compatibility
 const InputNode = ({ data }: any) => (
-  <div style={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 24px', minWidth: '150px', color: 'white', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
-    <MessageSquare size={16} color="#94a3b8" /> {data.label}
-    <Handle type="source" position={Position.Right} style={{ background: '#94a3b8' }} />
+  <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '12px 24px', minWidth: '150px', color: 'var(--text-primary)', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', boxShadow: 'var(--shadow-sm)' }}>
+    <MessageSquare size={16} color="var(--text-secondary)" /> {data.label}
+    <Handle type="source" position={Position.Right} style={{ background: 'var(--brand)' }} />
   </div>
 );
 
 const RetrieveNode = ({ data }: any) => (
-  <div style={{ background: 'rgba(168, 85, 247, 0.1)', border: '1px solid #a855f7', borderRadius: '8px', padding: '12px 24px', minWidth: '150px', color: 'white', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 0 10px rgba(168, 85, 247, 0.2)' }}>
-    <Handle type="target" position={Position.Left} style={{ background: '#a855f7' }} />
-    <Database size={16} color="#a855f7" /> {data.label}
-    <Handle type="source" position={Position.Right} style={{ background: '#a855f7' }} />
+  <div style={{ background: 'var(--brand-subtle)', border: '1px solid var(--brand)', borderRadius: '12px', padding: '12px 24px', minWidth: '150px', color: 'var(--text-primary)', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', boxShadow: 'var(--shadow-glow)' }}>
+    <Handle type="target" position={Position.Left} style={{ background: 'var(--brand)' }} />
+    <Database size={16} color="var(--brand)" /> {data.label}
+    <Handle type="source" position={Position.Right} style={{ background: 'var(--brand)' }} />
   </div>
 );
 
 const LlmNode = ({ data }: any) => (
-  <div style={{ background: 'rgba(79, 110, 247, 0.1)', border: '1px solid #4f6ef7', borderRadius: '8px', padding: '12px 24px', minWidth: '150px', color: 'white', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 0 10px rgba(79, 110, 247, 0.2)' }}>
-    <Handle type="target" position={Position.Left} style={{ background: '#4f6ef7' }} />
-    <Zap size={16} color="#4f6ef7" /> {data.label}
-    <Handle type="source" position={Position.Right} style={{ background: '#4f6ef7' }} />
+  <div style={{ background: 'var(--brand-subtle)', border: '1px solid var(--brand)', borderRadius: '12px', padding: '12px 24px', minWidth: '150px', color: 'var(--text-primary)', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', boxShadow: 'var(--shadow-glow)' }}>
+    <Handle type="target" position={Position.Left} style={{ background: 'var(--brand)' }} />
+    <Zap size={16} color="var(--brand)" /> {data.label}
+    <Handle type="source" position={Position.Right} style={{ background: 'var(--brand)' }} />
   </div>
 );
 
 const OutputNode = ({ data }: any) => (
-  <div style={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 24px', minWidth: '150px', color: 'white', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
-    <Handle type="target" position={Position.Left} style={{ background: '#94a3b8' }} />
-    <MessageSquare size={16} color="#94a3b8" /> {data.label}
+  <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '12px 24px', minWidth: '150px', color: 'var(--text-primary)', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', boxShadow: 'var(--shadow-sm)' }}>
+    <Handle type="target" position={Position.Left} style={{ background: 'var(--brand)' }} />
+    <MessageSquare size={16} color="var(--text-secondary)" /> {data.label}
   </div>
 );
 
@@ -90,32 +90,30 @@ export default function FlowForge() {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', color: 'var(--text-primary)' }}>
       
       {/* Toolbar */}
-      <div style={{ padding: '16px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--bg-base)', zIndex: 10 }}>
+      <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--bg-base)', zIndex: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 600, color: 'white' }}>RAG Pipeline</h1>
-          <span style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem' }}>Draft</span>
+          <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>RAG Pipeline</h1>
+          <span style={{ backgroundColor: 'var(--brand-subtle)', color: 'var(--brand)', padding: '4px 10px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 600, border: '1px solid var(--brand)' }}>Draft</span>
         </div>
-        
+
         <div style={{ display: 'flex', gap: '12px' }}>
-          <button style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'white', cursor: 'pointer' }}>
-            <Save size={16} /> Save
+          <button style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '8px', border: '1px solid var(--border)', color: 'var(--text-primary)', backgroundColor: 'var(--bg-overlay)', cursor: 'pointer', fontWeight: 500, fontSize: '0.875rem' }}>
+            <Save size={16} /> Save Graph
           </button>
-          <button style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'white', cursor: 'pointer' }}>
-            <Download size={16} /> Export .py
-          </button>
-          <button style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 24px', backgroundColor: 'var(--brand)', border: 'none', borderRadius: '8px', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
-            <Play size={16} fill="white" /> Generate Code
+          <button style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '8px', border: 'none', color: 'white', backgroundColor: 'var(--brand)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+            <Play size={16} /> Test Flow
           </button>
         </div>
       </div>
 
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      {/* Main Flow + Code Split Area */}
+      <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
         
-        {/* Canvas */}
-        <div style={{ flex: 1, position: 'relative' }}>
+        {/* Canvas Area */}
+        <div style={{ flex: 1, position: 'relative', backgroundColor: 'var(--bg-base)' }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -124,24 +122,29 @@ export default function FlowForge() {
             nodeTypes={nodeTypes}
             fitView
           >
-            <Background variant={BackgroundVariant.Dots} gap={24} size={2} color="rgba(255,255,255,0.1)" />
-            <Controls style={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', fill: 'white' }} />
+            <Background color="var(--border)" variant={BackgroundVariant.Dots} gap={20} size={1} />
+            <Controls style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', color: 'var(--text-primary)' }} />
+            <MiniMap style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)' }} maskColor="var(--bg-base)" />
           </ReactFlow>
         </div>
 
-        {/* Code Panel */}
-        <div style={{ width: '450px', borderLeft: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', backgroundColor: '#0a0f1c' }}>
-          <div style={{ padding: '16px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.875rem', fontWeight: 600, color: 'white', display: 'flex', justifyContent: 'space-between' }}>
-            <span>Generated LangGraph Code</span>
-            <span style={{ color: 'var(--brand)', fontSize: '0.75rem', cursor: 'pointer' }}>Copy</span>
+        {/* Generated Code Sidebar */}
+        <div style={{ width: '450px', borderLeft: '1px solid var(--border)', backgroundColor: 'var(--bg-card)', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>Generated LangGraph Python Code</span>
+            <button style={{ color: 'var(--brand)', display: 'flex', alignItems: 'center', gap: '4px', border: 'none', background: 'none', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 600 }}>
+              <Download size={14} /> Export .py
+            </button>
           </div>
-          <div style={{ flex: 1, padding: '24px', overflowY: 'auto' }}>
-            <pre style={{ margin: 0, fontFamily: 'monospace', fontSize: '0.875rem', color: '#e2e8f0', lineHeight: 1.5 }}>
-              <code dangerouslySetInnerHTML={{ __html: generatedCode.replace(/def /g, '<span style="color: #c678dd">def </span>').replace(/class /g, '<span style="color: #c678dd">class </span>').replace(/return/g, '<span style="color: #c678dd">return</span>').replace(/import/g, '<span style="color: #c678dd">import</span>').replace(/from/g, '<span style="color: #c678dd">from</span>').replace(/\"(.*?)\"/g, '<span style="color: #98c379">"$1"</span>') }} />
+          <div style={{ flex: 1, padding: '16px', backgroundColor: 'var(--bg-overlay)', overflowY: 'auto' }}>
+            <pre style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-primary)', lineHeight: 1.5, whiteSpace: 'pre-wrap', borderRadius: '12px', padding: '16px', backgroundColor: 'var(--bg-base)', border: '1px solid var(--border)' }}>
+              {generatedCode}
             </pre>
           </div>
         </div>
+
       </div>
+
     </div>
   );
 }

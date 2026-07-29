@@ -10,8 +10,8 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
   const location = useLocation();
   const path = location.pathname;
   
-  const [theme, setTheme] = useState<'dark' | 'light' | 'arc' | 'replicate' | 'vercel'>(() => {
-    return (localStorage.getItem('langrush_theme') as any) || 'vercel';
+  const [theme, setTheme] = useState<'dark' | 'light' | 'arc' | 'replicate' | 'vercel' | 'vercel-dark'>(() => {
+    return (localStorage.getItem('langrush_theme') as any) || 'vercel-dark';
   });
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
       if (prev === 'light') return 'arc';
       if (prev === 'arc') return 'replicate';
       if (prev === 'replicate') return 'vercel';
+      if (prev === 'vercel') return 'vercel-dark';
       return 'dark';
     });
   };
@@ -103,8 +104,8 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
             transition: 'all 0.2s'
           }}
         >
-          {theme === 'vercel' ? <span style={{ fontSize: '14px' }}>▲</span> : theme === 'replicate' ? <span style={{ fontSize: '14px' }}>🔥</span> : theme === 'arc' ? <span style={{ fontSize: '14px' }}>🎨</span> : theme === 'dark' ? <Sun size={16} color="#f59e0b" /> : <Moon size={16} color="#6366f1" />}
-          <span>{theme === 'vercel' ? 'Vercel Theme' : theme === 'replicate' ? 'Replicate Theme' : theme === 'arc' ? 'Arc Theme' : theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
+          {theme === 'vercel-dark' ? <span style={{ fontSize: '14px' }}>▲</span> : theme === 'vercel' ? <span style={{ fontSize: '14px' }}>▲</span> : theme === 'replicate' ? <span style={{ fontSize: '14px' }}>🔥</span> : theme === 'arc' ? <span style={{ fontSize: '14px' }}>🎨</span> : theme === 'dark' ? <Sun size={16} color="#f59e0b" /> : <Moon size={16} color="#6366f1" />}
+          <span>{theme === 'vercel-dark' ? 'Vercel Dark' : theme === 'vercel' ? 'Vercel Light' : theme === 'replicate' ? 'Replicate Theme' : theme === 'arc' ? 'Arc Theme' : theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
         </button>
 
         <div style={{ position: 'relative', cursor: 'pointer' }}>

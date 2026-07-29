@@ -197,11 +197,70 @@
   --border-hover:   #a1a1a1;
 
   /* Radius & Shadows */
-  --radius-xl:      12px;
+  --radius-xl:      14px;
   --shadow-sm:      0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md:      0 4px 14px rgba(0, 0, 0, 0.08);
   --shadow-lg:      0 8px 30px rgba(0, 0, 0, 0.12);
   --shadow-glow:    0 0 25px rgba(0, 112, 243, 0.2);
+}
+
+[data-theme="vercel-dark"] {
+  /* Vercel Developer Platform Dark Theme — Stark Black & Vercel Blue */
+  --bg-base:        #000000;
+  --bg-surface:     #111111;
+  --bg-card:        #111111;
+  --bg-elevated:    #1a1a1a;
+  --bg-overlay:     #1a1a1a;
+  --bg-hover:       #222222;
+
+  /* Brand — Vercel Blue & Glow */
+  --brand:          #0070f3;
+  --brand-active:   #3291ff;
+  --brand-disabled: #003775;
+  --brand-dim:      #0051b3;
+  --brand-glow:     rgba(0, 112, 243, 0.3);
+  --brand-subtle:   rgba(0, 112, 243, 0.12);
+
+  /* Text */
+  --text-primary:   #ffffff;
+  --text-secondary: #888888;
+  --text-muted:     #666666;
+  --text-disabled:  #444444;
+
+  /* Borders */
+  --border:         #333333;
+  --border-active:  #0070f3;
+  --border-hover:   #555555;
+
+  /* Radius & Shadows */
+  --radius-xl:      14px;
+  --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.8);
+  --shadow-md:      0 4px 20px rgba(0, 0, 0, 0.9);
+  --shadow-lg:      0 8px 40px rgba(0, 0, 0, 0.95);
+  --shadow-glow:    0 0 30px rgba(0, 112, 243, 0.3);
+}
+
+/* Global Rounded Corners Rules for Code Blocks & Tables */
+pre, code, textarea, .json-viewer, .code-well {
+  border-radius: var(--radius-lg, 12px) !important;
+}
+
+table, .data-table, .table-container {
+  border-radius: var(--radius-lg, 12px) !important;
+  overflow: hidden !important;
+}
+
+.data-table th:first-child {
+  border-top-left-radius: var(--radius-lg, 12px);
+}
+.data-table th:last-child {
+  border-top-right-radius: var(--radius-lg, 12px);
+}
+.data-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: var(--radius-lg, 12px);
+}
+.data-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: var(--radius-lg, 12px);
 }
 
 /* ── Reset ────────────────────────────────────────────────────── */
