@@ -168,6 +168,42 @@
   --shadow-glow:    0 0 25px rgba(234, 40, 4, 0.25);
 }
 
+[data-theme="vercel"] {
+  /* Vercel Developer Platform Theme — Stark Minimal White & Electric Blue */
+  --bg-base:        #fafafa;
+  --bg-surface:     #ffffff;
+  --bg-card:        #ffffff;
+  --bg-elevated:    #ffffff;
+  --bg-overlay:     #f5f5f5;
+  --bg-hover:       #ebebeb;
+
+  /* Brand — Vercel Blue & Ink */
+  --brand:          #0070f3;
+  --brand-active:   #0761d1;
+  --brand-disabled: #a0c7fc;
+  --brand-dim:      #0051b3;
+  --brand-glow:     rgba(0, 112, 243, 0.2);
+  --brand-subtle:   rgba(0, 112, 243, 0.08);
+
+  /* Text */
+  --text-primary:   #171717;
+  --text-secondary: #4d4d4d;
+  --text-muted:     #888888;
+  --text-disabled:  #cccccc;
+
+  /* Borders */
+  --border:         #ebebeb;
+  --border-active:  #0070f3;
+  --border-hover:   #a1a1a1;
+
+  /* Radius & Shadows */
+  --radius-xl:      12px;
+  --shadow-sm:      0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md:      0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-lg:      0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-glow:    0 0 25px rgba(0, 112, 243, 0.2);
+}
+
 /* ── Reset ────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 14px; scroll-behavior: smooth; }
