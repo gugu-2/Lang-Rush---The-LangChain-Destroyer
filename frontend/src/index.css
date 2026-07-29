@@ -132,6 +132,42 @@
   --shadow-glow:    0 0 25px rgba(49, 57, 251, 0.25);
 }
 
+[data-theme="replicate"] {
+  /* Replicate AI Playground Theme — Bone Canvas & Hot Orange */
+  --bg-base:        #f9f7f3;
+  --bg-surface:     #ffffff;
+  --bg-card:        #ffffff;
+  --bg-elevated:    #f3f0e8;
+  --bg-overlay:     #ebe6da;
+  --bg-hover:       #dfd9cb;
+
+  /* Brand — Replicate Hot Orange */
+  --brand:          #ea2804;
+  --brand-active:   #c01f00;
+  --brand-disabled: #f8ad9e;
+  --brand-dim:      #9c1900;
+  --brand-glow:     rgba(234, 40, 4, 0.22);
+  --brand-subtle:   rgba(234, 40, 4, 0.08);
+
+  /* Text */
+  --text-primary:   #202020;
+  --text-secondary: #3a3a3a;
+  --text-muted:     #646464;
+  --text-disabled:  #bbbbbb;
+
+  /* Borders */
+  --border:         rgba(32, 32, 32, 0.12);
+  --border-active:  #ea2804;
+  --border-hover:   #202020;
+
+  /* Radius & Shadows */
+  --radius-xl:      16px;
+  --shadow-sm:      0 1px 3px rgba(32, 32, 32, 0.06);
+  --shadow-md:      0 4px 14px rgba(32, 32, 32, 0.08);
+  --shadow-lg:      0 8px 30px rgba(32, 32, 32, 0.12);
+  --shadow-glow:    0 0 25px rgba(234, 40, 4, 0.25);
+}
+
 /* ── Reset ────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 14px; scroll-behavior: smooth; }

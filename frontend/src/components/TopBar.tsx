@@ -10,8 +10,8 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
   const location = useLocation();
   const path = location.pathname;
   
-  const [theme, setTheme] = useState<'dark' | 'light' | 'arc'>(() => {
-    return (localStorage.getItem('langrush_theme') as any) || 'arc';
+  const [theme, setTheme] = useState<'dark' | 'light' | 'arc' | 'replicate'>(() => {
+    return (localStorage.getItem('langrush_theme') as any) || 'replicate';
   });
 
   useEffect(() => {
@@ -20,7 +20,12 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
   }, [theme]);
 
   const cycleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : prev === 'light' ? 'arc' : 'dark');
+    setTheme(prev => {
+      if (prev === 'dark') return 'light';
+      if (prev === 'light') return 'arc';
+      if (prev === 'arc') return 'replicate';
+      return 'dark';
+    });
   };
   
   // Find matching title or default
@@ -97,8 +102,8 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
             transition: 'all 0.2s'
           }}
         >
-          {theme === 'arc' ? <span style={{ fontSize: '14px' }}>🎨</span> : theme === 'dark' ? <Sun size={16} color="#f59e0b" /> : <Moon size={16} color="#6366f1" />}
-          <span>{theme === 'arc' ? 'Arc Theme' : theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
+          {theme === 'replicate' ? <span style={{ fontSize: '14px' }}>🔥</span> : theme === 'arc' ? <span style={{ fontSize: '14px' }}>🎨</span> : theme === 'dark' ? <Sun size={16} color="#f59e0b" /> : <Moon size={16} color="#6366f1" />}
+          <span>{theme === 'replicate' ? 'Replicate Theme' : theme === 'arc' ? 'Arc Theme' : theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
         </button>
 
         <div style={{ position: 'relative', cursor: 'pointer' }}>
