@@ -17,11 +17,13 @@ import Monitoring from './pages/Monitoring'
 import FailureClusters from './pages/FailureClusters'
 import BusinessHub from './pages/BusinessHub'
 import GuardrailsHub from './pages/GuardrailsHub'
+import ShadcnHub from './pages/ShadcnHub'
 import './index.css'
 
 const PAGE_TITLES: Record<string, { title: string; subtitle: string }> = {
   '/': { title: 'Dashboard', subtitle: 'Real-time overview of your LLM application' },
   '/runs': { title: 'Traces & Runs', subtitle: 'Inspect every LLM call, chain, and agent step' },
+  '/shadcn': { title: 'Shadcn UI Engine', subtitle: 'Native Radix UI & Tailwind CSS frontend primitives' },
   '/business': { title: 'Business Engines Hub', subtitle: 'High-impact autonomous AI business tools' },
   '/guardrails': { title: 'Security & Auto-Heal', subtitle: 'Inline security firewall and automated error-repair' },
   '/projects': { title: 'Projects', subtitle: 'Organize your runs and prompts by application' },
@@ -49,6 +51,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/runs" element={<Runs />} />
               <Route path="/runs/:id" element={<TraceDetail />} />
+              <Route path="/shadcn" element={<ShadcnHub />} />
               <Route path="/business" element={<BusinessHub />} />
               <Route path="/guardrails" element={<GuardrailsHub />} />
               <Route path="/projects" element={<Projects />} />

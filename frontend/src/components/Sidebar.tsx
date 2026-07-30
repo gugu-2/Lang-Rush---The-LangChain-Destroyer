@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Activity, GitBranch, Zap, BookOpen, 
   FlaskConical, CheckSquare, MessageSquare, DollarSign, 
   TestTube, Network, BarChart2, AlertTriangle, 
-  FolderOpen, Settings, User, Shield, Sparkles 
+  FolderOpen, Settings, User, Shield, Sparkles, Layers 
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -25,6 +25,7 @@ const Sidebar = () => {
     {
       title: 'ENTERPRISE ENGINES',
       items: [
+        { name: 'Shadcn UI Engine', path: '/shadcn', icon: <Layers size={18} /> },
         { name: 'Business Hub', path: '/business', icon: <Sparkles size={18} /> },
         { name: 'Security & Auto-Heal', path: '/guardrails', icon: <Shield size={18} /> },
       ]
