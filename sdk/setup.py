@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='langforge-sdk',
+    name='langrush-sdk',
     version='1.0.0',
     packages=find_packages(),
     install_requires=[
@@ -13,11 +13,11 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'langforge=langforge.cli:main',
+            'langrush=langrush.cli:main',
         ],
     },
     python_requires='>=3.9',
-    description='Official SDK for LangForge — All-in-one LLMOps Platform',
+    description='Official SDK for LangRush — All-in-one LLMOps Platform',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
 )

@@ -1,22 +1,26 @@
-# ⚡ LangForge
+# ⚡ LangRush
 
-**The World's First All-in-One LLMOps + LangChain Developer Platform**
+**The World's First All-in-One LLMOps + LangChain Developer Platform (The LangChain Destroyer)**
 
 > Observe · Debug · Evaluate · Build · Optimize — everything in one place.
 
-![LangForge Banner](https://via.placeholder.com/1200x400/030710/4f6ef7?text=LangForge+%E2%80%94+All-in-One+LLMOps+Platform)
+![LangRush Banner](https://via.placeholder.com/1200x400/030710/4f6ef7?text=LangRush+%E2%80%94+All-in-One+LLMOps+Platform)
 
 ---
 
-## 🚀 What is LangForge?
+## 🚀 What is LangRush?
 
-LangForge is a **closed-source commercial SaaS** that combines:
+LangRush is a **closed-source commercial SaaS** that combines:
 
 | Module | Description |
 |--------|-------------|
 | 📊 **Dashboard** | Real-time stats: runs, cost, latency, error rate |
 | 🔍 **Traces & Runs** | Full trace capture with visual tree debugger (like LangSmith) |
 | 🌳 **Trace Detail** | ChainScope-powered visual debugger for every LLM/tool/chain step |
+| 🛡️ **Security Firewall** | Inline PII redaction and prompt injection defense |
+| 🔧 **Auto-Healing Middleware** | Automated error-repair engine powered by Gemini |
+| 💼 **Business Hub** | 5 autonomous AI business engines (Compliance, VoC, Proposals, Medical, SDR Battlecards) |
+| 🎨 **Shadcn UI Engine** | Native Radix UI primitives and Tailwind CSS design tokens |
 | 🗂️ **Projects** | Organize runs, manage environments, set alert thresholds |
 | 🧪 **Datasets & Evals** | Build test sets, run LLM-as-judge evaluations, track regression |
 | 📝 **Prompt Hub** | PromptVault — Git-style versioned prompts with A/B testing |
@@ -42,7 +46,7 @@ LangForge is a **closed-source commercial SaaS** that combines:
 cd backend
 pip install -r requirements.txt
 cp ../.env.example .env
-# Edit .env and add your OPENAI_API_KEY
+# Edit .env and add your GEMINI_API_KEY
 uvicorn main:app --reload --port 8000
 ```
 
@@ -66,32 +70,32 @@ pip install -e .
 ```
 
 ```python
-import langforge
+import langrush
 
-# Configure (or set LANGFORGE_API_KEY + LANGFORGE_URL env vars)
-langforge.configure(
+# Configure (or set LANGRUSH_API_KEY + LANGRUSH_URL env vars)
+langrush.configure(
     api_key="your-project-api-key",
     base_url="http://localhost:8000"
 )
 
 # Trace a LangChain chain
-from langforge import LangForgeCallbackHandler
-handler = LangForgeCallbackHandler()
+from langrush import LangRushCallbackHandler
+handler = LangRushCallbackHandler()
 result = chain.invoke({"question": "Hello"}, config={"callbacks": [handler]})
 
 # Trace any function
-from langforge import traceable
+from langrush import traceable
 
 @traceable(name="my-retrieval", run_type="tool")
 def retrieve_docs(query: str) -> list:
     return vectorstore.similarity_search(query)
 
 # Use Prompt Hub
-from langforge import hub
+from langrush import hub
 prompt = hub.pull("rag-system-prompt")  # Fetches latest production version
 
 # Cost optimization
-from langforge import optimize
+from langrush import optimize
 
 @optimize(budget="$10/day", cache=True, prefer_cheap=True)
 def answer(query: str) -> str:
@@ -104,7 +108,7 @@ def answer(query: str) -> str:
 
 ```powershell
 cp .env.example .env
-# Add OPENAI_API_KEY to .env
+# Add GEMINI_API_KEY to .env
 docker-compose up -d
 ```
 
@@ -115,7 +119,7 @@ Open: http://localhost:5173
 ## 🧪 AgentBench — Testing Your Agents
 
 ```python
-from langforge.testing import AgentTest, assert_tool_called, assert_contains_topic, assert_no_hallucination
+from langrush.testing import AgentTest, assert_tool_called, assert_contains_topic, assert_no_hallucination
 
 class TestMyRAGAgent(AgentTest):
     agent = my_rag_agent
@@ -134,14 +138,14 @@ class TestMyRAGAgent(AgentTest):
         assert_no_hallucination(result, source=refund_policy_text)
 ```
 
-Run: `langforge test run --suite TestMyRAGAgent`
+Run: `langrush test run --suite TestMyRAGAgent`
 
 ---
 
 ## 💸 TokenMiser — Cut Your API Bill
 
 ```python
-from langforge import optimize
+from langrush import optimize
 
 # Simple — drop-in decorator, zero config changes needed
 @optimize(budget="$20/day", cache=True, prefer_cheap=True)
@@ -150,7 +154,7 @@ def my_llm_pipeline(question: str) -> str:
 
 # Results: 
 # ✅ Semantic cache: identical/similar questions hit cache (0 API cost)
-# ✅ Smart routing: simple questions → gpt-4o-mini (10x cheaper)
+# ✅ Smart routing: simple questions → gemini-2.5-flash (10x cheaper)
 # ✅ Budget guard: warns and throttles when daily limit approaches
 ```
 
@@ -180,16 +184,16 @@ def my_llm_pipeline(question: str) -> str:
 ## 🛠️ Architecture
 
 ```
-langforge/
+langrush/
 ├── backend/          # FastAPI + SQLAlchemy + SQLite/PostgreSQL
-├── frontend/         # React 18 + Vite + TypeScript
-├── sdk/              # Python SDK (pip install langforge-sdk)
+├── frontend/         # React 19 + Vite + Tailwind CSS + shadcn/ui
+├── sdk/              # Python SDK (pip install langrush-sdk)
 ├── docker-compose.yml
 └── .env.example
 ```
 
 - **Backend**: FastAPI, SQLAlchemy (async), SQLite (dev) / PostgreSQL (prod)
-- **Frontend**: React 18, Vite, TypeScript, Recharts, React Flow, Monaco Editor
+- **Frontend**: React 19, Vite, TypeScript, Tailwind CSS, shadcn/ui, Recharts, React Flow
 - **SDK**: Pure Python, zero heavy dependencies, async-safe
 - **Realtime**: WebSocket streaming for live trace updates
 
@@ -202,4 +206,4 @@ Contact: your-email@example.com
 
 ---
 
-*Built with ❤️ using FastAPI, React, and LangChain*
+*Built with ❤️ using FastAPI, React, and Gemini*

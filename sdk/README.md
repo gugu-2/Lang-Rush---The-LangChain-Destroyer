@@ -1,59 +1,47 @@
-# LangForge SDK
+# LangRush SDK
 
-Official Python SDK for the LangForge LLMOps Platform.
+Official Python SDK for the LangRush LLMOps Platform.
 
-## Installation
-
-```bash
-pip install langforge-sdk
-```
-
-## Setup
+## Quick Start
 
 ```bash
-langforge config set --api-key YOUR_KEY --url http://localhost:8000
+pip install langrush-sdk
 ```
 
-## Features
+Configure your environment:
 
-### Tracing
-
-```python
-from langforge import traceable
-
-@traceable(name="my-cool-function")
-def do_something(x):
-    return x * 2
+```bash
+langrush config set --api-key YOUR_KEY --url http://localhost:8000
 ```
 
-### LangChain Integration
+Or in Python code:
 
 ```python
-from langforge import LangForgeCallbackHandler
-from langchain.chains import LLMChain
-# ... setup your chain
-handler = LangForgeCallbackHandler()
-chain.invoke({"input": "hello"}, config={"callbacks": [handler]})
-```
+import langrush
 
-### Prompt Hub
+# 1. Automatic tracing decorator
+from langrush import traceable
 
-```python
-from langforge import hub
+@traceable(name="my-llm-pipeline", run_type="chain")
+def run_pipeline(user_query: str) -> str:
+    return "response"
 
-template = hub.pull("my-prompt", version="latest")
-```
+# 2. LangChain Callback Handler
+from langrush import LangRushCallbackHandler
 
-### Testing
+handler = LangRushCallbackHandler()
+chain.invoke(input, config={"callbacks": [handler]})
 
-```python
-from langforge import AgentTest, assert_contains_topic
+# 3. Fetch prompts from PromptVault
+from langrush import hub
 
-class MyTest(AgentTest):
-    def __init__(self):
-        self.agent = lambda x: f"Response about {x}"
+prompt = hub.pull("sql_generator")
 
-test = MyTest()
-result = test.run("apples")
-assert_contains_topic(result, "apples")
+# 4. AgentBench testing framework
+from langrush.testing import AgentTest, assert_contains_topic
+
+class TestAgent(AgentTest):
+    def test_basic(self):
+        res = self.run("Hello")
+        assert_contains_topic(res, "hello")
 ```

@@ -231,7 +231,7 @@ async def generate_compliance_report(project_id: str, db: AsyncSession = Depends
     errors = sum(1 for r in runs if r.status == "error")
     success_rate = 100.0 if total == 0 else round(((total - errors) / total) * 100, 1)
     
-    report_md = f"""# 🛡️ LangForge SOC2 & EU AI Act Compliance Audit
+    report_md = f"""# 🛡️ LangRush SOC2 & EU AI Act Compliance Audit
 **Project ID:** {project_id}
 **Generated Date:** {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}
 **Audit Framework:** EU AI Act Risk Tier 2 / SOC2 Type II LLMOps Standard

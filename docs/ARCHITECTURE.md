@@ -19,7 +19,7 @@ langrush/
 │   │   ├── pages/            # 15+ Interactive pages
 │   │   └── api/              # Axios HTTP client with Bearer auth interceptor
 ├── sdk/                      # LangRush Official Python SDK (pip install langrush-sdk)
-│   ├── langforge/            # Core package
+│   ├── langrush/             # Core package
 │   │   ├── callback_handler  # LangChain callback hook
 │   │   ├── traceable.py      # @traceable decorator
 │   │   ├── auto_heal.py      # @auto_heal runtime repair decorator

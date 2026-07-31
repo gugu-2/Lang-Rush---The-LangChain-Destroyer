@@ -21,7 +21,7 @@
 ### Phase 1 — Core Infrastructure (Weeks 1–3)
 - **Backend Schema & Async DB**: `backend/database.py` & `backend/models/`
 - **JWT Auth & Password Hashing**: `backend/routers/auth.py`
-- **Python SDK**: `sdk/setup.py` & `sdk/langforge/client.py` (`pip install -e .`)
+- **Python SDK**: `sdk/setup.py` & `sdk/langrush/client.py` (`pip install -e .`)
 - **Dashboard & Real-time Stats**: `frontend/src/pages/Dashboard.tsx` & `backend/routers/stats.py`
 - **Traces & Runs Explorer**: `frontend/src/pages/Runs.tsx` & `backend/routers/runs.py`
 
