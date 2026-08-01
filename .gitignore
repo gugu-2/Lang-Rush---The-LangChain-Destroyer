@@ -49,3 +49,9 @@ backend/.env
 *.log
 logs/
 .system_generated/
+
+# Colibri Offline Inference Engine
+colibri/engine/*
+!colibri/engine/.gitkeep
+colibri/models/*
+!colibri/models/.gitkeep
