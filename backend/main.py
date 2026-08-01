@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from database import create_tables
 from config import settings
 
-from routers import auth, projects, runs, stats, datasets, evaluations, prompts, flows, alerts, ws, gamechangers, business_engines, system_metrics
+from routers import auth, projects, runs, stats, datasets, evaluations, prompts, flows, alerts, ws, gamechangers, business_engines, system_metrics, inference
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -40,6 +40,7 @@ app.include_router(alerts.router, prefix="/api")
 app.include_router(gamechangers.router, prefix="/api")
 app.include_router(business_engines.router, prefix="/api")
 app.include_router(system_metrics.router, prefix="/api/system_metrics")
+app.include_router(inference.router)
 app.include_router(ws.router) # No api prefix for ws
 
 @app.get("/health")
