@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='langrush-sdk',
+    name='lang-rush-sdk',
     version='1.0.0',
     packages=find_packages(),
     install_requires=[
@@ -17,7 +17,7 @@ setup(
         ],
     },
     python_requires='>=3.9',
-    description='Official SDK for LangRush — All-in-one LLMOps Platform',
+    description='Official SDK for Lang Rush — All-in-one LLMOps Platform',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
 )

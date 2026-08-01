@@ -33,13 +33,13 @@ def estimate_cost(model: str, prompt_tokens: int, completion_tokens: int) -> flo
             return (prompt_tokens / 1000 * in_cost) + (completion_tokens / 1000 * out_cost)
     return 0.0
 
-class LangForgeCallbackHandler(BaseCallbackHandler):
+class LangRushCallbackHandler(BaseCallbackHandler):
     """
-    LangChain callback handler that sends all traces to LangForge.
+    LangChain callback handler that sends all traces to LangRush.
     
     Usage:
-        from langforge import LangForgeCallbackHandler
-        handler = LangForgeCallbackHandler()
+        from langrush import LangRushCallbackHandler
+        handler = LangRushCallbackHandler()
         chain.invoke(input, config={"callbacks": [handler]})
     """
     

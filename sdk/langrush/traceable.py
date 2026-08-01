@@ -10,7 +10,7 @@ from .client import get_client
 
 def traceable(func: Optional[Callable] = None, *, name: str = None, run_type: str = "chain", tags: list = None):
     """
-    Decorator that traces any Python function as a LangForge run.
+    Decorator that traces any Python function as a LangRush run.
     
     Usage:
         @traceable

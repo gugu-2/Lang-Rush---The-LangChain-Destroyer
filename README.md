@@ -18,14 +18,15 @@ LangRush is a **closed-source commercial SaaS** that combines:
 | 🔍 **Traces & Runs** | Full trace capture with visual tree debugger (like LangSmith) |
 | 🌳 **Trace Detail** | ChainScope-powered visual debugger for every LLM/tool/chain step |
 | 🛡️ **Security Firewall** | Inline PII redaction and prompt injection defense |
+| 🪶 **Colibrì Local Engine** | Embedded C-based inference engine for 100% air-gapped, zero-cost AI |
 | 🔧 **Auto-Healing Middleware** | Automated error-repair engine powered by Gemini |
 | 💼 **Business Hub** | 5 autonomous AI business engines (Compliance, VoC, Proposals, Medical, SDR Battlecards) |
 | 🎨 **Shadcn UI Engine** | Native Radix UI primitives and Tailwind CSS design tokens |
 | 🗂️ **Projects** | Organize runs, manage environments, set alert thresholds |
-| 🧪 **Datasets & Evals** | Build test sets, run LLM-as-judge evaluations, track regression |
+| 🧪 **Datasets & Evals** | Build test sets, run zero-cost local LLM-as-judge evaluations |
 | 📝 **Prompt Hub** | PromptVault — Git-style versioned prompts with A/B testing |
 | 🎮 **Playground** | Live prompt editor with model comparison |
-| 💸 **TokenMiser** | Semantic cache + smart routing — cut your API bill 40–70% |
+| 💸 **TokenMiser** | Semantic cache + smart fallback routing to local Colibrì engine on API outage |
 | 🧪 **AgentBench** | pytest for LangGraph agents with semantic assertions |
 | 🎨 **FlowForge** | Drag-and-drop visual LangGraph builder with live code sync |
 | 📈 **Monitoring** | Time-series charts, alert rules, cost forecasting |
@@ -148,15 +149,26 @@ Run: `langrush test run --suite TestMyRAGAgent`
 from langrush import optimize
 
 # Simple — drop-in decorator, zero config changes needed
-@optimize(budget="$20/day", cache=True, prefer_cheap=True)
+@optimize(budget="$20/day", cache=True, prefer_cheap=True, offline_fallback=True)
 def my_llm_pipeline(question: str) -> str:
     return rag_chain.invoke({"question": question})
 
 # Results: 
 # ✅ Semantic cache: identical/similar questions hit cache (0 API cost)
 # ✅ Smart routing: simple questions → gemini-2.5-flash (10x cheaper)
+# ✅ Offline Fallback: If OpenAI/Anthropic APIs fail or hit rate limits, seamlessly streams from local Colibrì engine (0 cost).
 # ✅ Budget guard: warns and throttles when daily limit approaches
 ```
+
+---
+
+## 🪶 Colibrì Local Engine — 100% Air-Gapped AI
+
+LangRush bundles a highly optimized, C-based inference engine (Colibrì) directly into the platform. No Docker, no Python dependencies, just blazing-fast local AI using MoE (Mixture of Experts) models like OLMoE-7B.
+
+- **Air-Gapped Mode**: Switch the platform entirely offline for healthcare, legal, or defense use cases.
+- **Zero-Cost Evaluator**: Run massive `AgentBench` test suites overnight. Instead of paying OpenAI $50 to judge 10,000 logs, the Colibrì engine runs a local LLM-as-a-judge for **free**.
+- **Auto-Fallback**: If your cloud API key expires or hits a 429 Rate Limit, LangRush instantly kicks the request to the local SSD engine. Users never see a crash.
 
 ---
 
@@ -187,7 +199,7 @@ def my_llm_pipeline(question: str) -> str:
 langrush/
 ├── backend/          # FastAPI + SQLAlchemy + SQLite/PostgreSQL
 ├── frontend/         # React 19 + Vite + Tailwind CSS + shadcn/ui
-├── sdk/              # Python SDK (pip install langrush-sdk)
+├── sdk/              # Python SDK (pip install lang-rush-sdk)
 ├── docker-compose.yml
 └── .env.example
 ```

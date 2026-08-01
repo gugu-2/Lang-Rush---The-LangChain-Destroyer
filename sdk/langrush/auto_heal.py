@@ -5,7 +5,7 @@ from .client import get_client
 
 def auto_heal(func: Callable = None, *, max_retries: int = 2):
     """
-    Auto-healing decorator that catches exceptions, sends error context to Gemini/LangForge backend,
+    Auto-healing decorator that catches exceptions, sends error context to Gemini/LangRush backend,
     and returns a repaired output.
     """
     def decorator(fn: Callable):

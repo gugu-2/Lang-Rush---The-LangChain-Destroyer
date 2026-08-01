@@ -3,7 +3,7 @@ import threading
 import json
 from typing import Optional
 
-class LangForgeClient:
+class LangRushClient:
     def __init__(self, api_key: str = "", base_url: str = "http://localhost:8000"):
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
@@ -11,7 +11,7 @@ class LangForgeClient:
         self._session.headers.update({"X-API-Key": api_key, "Content-Type": "application/json"})
     
     def send_run(self, run_data: dict) -> Optional[str]:
-        """Send a run to LangForge backend. Returns run_id or None on failure."""
+        """Send a run to LangRush backend. Returns run_id or None on failure."""
         try:
             resp = self._session.post(f"{self.base_url}/api/runs", json=run_data, timeout=5)
             if resp.status_code in (200, 201):
@@ -46,19 +46,19 @@ class LangForgeClient:
             return False
 
 # Global client instance
-_client: Optional[LangForgeClient] = None
+_client: Optional[LangRushClient] = None
 
 def configure(api_key: str, base_url: str = "http://localhost:8000"):
-    """Configure the global LangForge client."""
+    """Configure the global LangRush client."""
     global _client
-    _client = LangForgeClient(api_key=api_key, base_url=base_url)
+    _client = LangRushClient(api_key=api_key, base_url=base_url)
 
-def get_client() -> LangForgeClient:
+def get_client() -> LangRushClient:
     global _client
     if _client is None:
         import os
-        _client = LangForgeClient(
-            api_key=os.getenv("LANGFORGE_API_KEY", ""),
-            base_url=os.getenv("LANGFORGE_URL", "http://localhost:8000")
+        _client = LangRushClient(
+            api_key=os.getenv("LangRush_API_KEY", ""),
+            base_url=os.getenv("LangRush_URL", "http://localhost:8000")
         )
     return _client

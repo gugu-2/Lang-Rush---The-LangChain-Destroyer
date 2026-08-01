@@ -1,16 +1,16 @@
-from .callback_handler import LangForgeCallbackHandler
+from .callback_handler import LangRushCallbackHandler
 from .traceable import traceable
 from .prompt_hub import hub, PromptHub
 from .optimize import optimize
 from .testing import AgentTest, assert_tool_called, assert_contains_topic, assert_no_hallucination, assert_sentiment, assert_score_above
-from .client import LangForgeClient, configure
+from .client import LangRushClient, configure
 
 from .auto_heal import auto_heal
 from .guardrails import guardrails
 
 __version__ = '1.0.0'
 __all__ = [
-    'LangForgeCallbackHandler',
+    'LangRushCallbackHandler',
     'traceable', 
     'hub',
     'PromptHub',

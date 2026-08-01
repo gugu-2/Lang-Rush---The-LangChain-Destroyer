@@ -20,7 +20,7 @@ def guardrails(check_pii: bool = True, check_injection: bool = True):
                 if resp.status_code == 200:
                     data = resp.json()
                     if not data.get("is_safe"):
-                        print(f"[LANGFORGE GUARDRAIL WARNING] Violations: {data.get('violations')}")
+                        print(f"[LangRush GUARDRAIL WARNING] Violations: {data.get('violations')}")
                         # Replace input prompt with sanitized prompt if args provided
                         if args and isinstance(args[0], str):
                             args = (data.get("sanitized_prompt"),) + args[1:]

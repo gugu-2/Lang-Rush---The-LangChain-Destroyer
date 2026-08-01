@@ -1,11 +1,11 @@
-# LangRush SDK
+# Lang Rush SDK
 
-Official Python SDK for the LangRush LLMOps Platform.
+Official Python SDK for the Lang Rush LLMOps Platform.
 
 ## Quick Start
 
 ```bash
-pip install langrush-sdk
+pip install lang-rush-sdk
 ```
 
 Configure your environment:
