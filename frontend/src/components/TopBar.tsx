@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Bell, ChevronDown, Sun, Moon } from 'lucide-react';
+import { OfflineStatusBadge } from './OfflineStatusBadge';
 
 interface TopBarProps {
   titles: Record<string, { title: string, subtitle: string }>;
@@ -68,6 +69,8 @@ const TopBar: React.FC<TopBarProps> = ({ titles }) => {
           <span style={{ color: 'var(--text-primary)', fontSize: '0.875rem', fontWeight: 500 }}>Production App</span>
           <ChevronDown size={14} color="var(--text-muted)" style={{ marginLeft: '8px' }} />
         </div>
+
+        <OfflineStatusBadge />
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>

@@ -18,6 +18,7 @@ import FailureClusters from './pages/FailureClusters'
 import BusinessHub from './pages/BusinessHub'
 import GuardrailsHub from './pages/GuardrailsHub'
 import ShadcnHub from './pages/ShadcnHub'
+import { LocalModels } from './pages/LocalModels'
 import './index.css'
 
 const PAGE_TITLES: Record<string, { title: string; subtitle: string }> = {
@@ -37,6 +38,7 @@ const PAGE_TITLES: Record<string, { title: string; subtitle: string }> = {
   '/flowforge': { title: 'FlowForge', subtitle: 'Visual LangGraph agent builder' },
   '/monitoring': { title: 'Monitoring & Alerts', subtitle: 'Production observability and alert management' },
   '/failures': { title: 'Failure Intelligence', subtitle: 'AI-powered failure clustering and root cause analysis' },
+  '/local-models': { title: 'Local Models', subtitle: 'Manage air-gapped Colibrì MoE models for offline inference' },
 }
 
 function App() {
@@ -65,6 +67,7 @@ function App() {
               <Route path="/flowforge" element={<FlowForge />} />
               <Route path="/monitoring" element={<Monitoring />} />
               <Route path="/failures" element={<FailureClusters />} />
+              <Route path="/local-models" element={<LocalModels />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

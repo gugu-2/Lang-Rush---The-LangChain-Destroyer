@@ -4,7 +4,8 @@ import {
   LayoutDashboard, Activity, GitBranch, Zap, BookOpen, 
   FlaskConical, CheckSquare, MessageSquare, DollarSign, 
   TestTube, Network, BarChart2, AlertTriangle, 
-  FolderOpen, Settings, User, Shield, Sparkles, Layers 
+  FolderOpen, Settings, User, Shield, Sparkles, Layers,
+  HardDriveDownload
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -28,6 +29,7 @@ const Sidebar = () => {
         { name: 'Shadcn UI Engine', path: '/shadcn', icon: <Layers size={18} /> },
         { name: 'Business Hub', path: '/business', icon: <Sparkles size={18} /> },
         { name: 'Security & Auto-Heal', path: '/guardrails', icon: <Shield size={18} /> },
+        { name: 'Local Models (MoE)', path: '/local-models', icon: <HardDriveDownload size={18} /> },
       ]
     },
     {
